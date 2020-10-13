@@ -1,4 +1,3 @@
-
 def read_file(file_name):
     file = open(file_name, "r")
     input = file.readline()
@@ -25,39 +24,46 @@ def get_key(dictionary, value):
 
 
 def onp(input):
-    output = []
-    stack = []
+    stack, output = [], []
     levels = {
+        0: ["("],
         1: ["+", "-"],
         2: ["*", "/"],
         3: ["^"]
     }
 
     for i in input:
+        # numbers
         if i.isnumeric():
             output.append(i)
             continue
 
+        elif i in ["+", "-", "*", "/", "^"]:
+            while stack and get_key(levels, stack[-1]) > get_key(levels, i):
+                output.append(stack[-1])
+                stack.pop()
+            stack.append(i)
+
+        elif i == "(":
+            stack.append(i)
+
         elif i == ")":
             for j in stack:
-                if j != "(":
-                    output.append(stack.pop(0))
-                    continue
-                stack.pop(0)
+
+                if stack[-1] != "(":
+                    output.append(stack[-1])
+                    stack.pop()
+
+
+                print(stack.pop())
                 break
-            continue
 
-            # if len(stack) != 0 or get_key(stack[len(stack)-1]) < get_key(i):
-            #     stack.append(i)
-            # else:
-            #     output.append(i)
+        print("Input: " + i + " Stack: " + str(stack) + " Output: " + str(output))
 
-    for i in stack:
-        output.append(i)
-
-
-    return output
-
+    while stack:
+        output.append(stack[-1])
+        stack.pop()
+    print(" Output: " + str(output))
 
 def main():
     levels = {
@@ -66,10 +72,54 @@ def main():
         3: ["^"]
     }
     input = read_file("input.txt")
-    print(input)
-    print(onp(input))
+    # print(input)
+    # print(onp(input))
+    onp(input)
     # print(get_key(levels, "+"))
 
 
-
 main()
+
+# output = []
+# stack = []
+# levels = {
+#     0: ["("],
+#     1: ["+", "-"],
+#     2: ["*", "/"],
+#     3: ["^"]
+# }
+
+# for i in input:
+#     if i.isnumeric():
+#         output.append(i)
+#         continue
+#
+#     elif i == ")":
+#         for j in stack:
+#
+#             if j != "(":
+#                 output.append(stack.pop(-1))
+#                 continue
+#
+#             break
+#         continue
+#
+#     elif i == "(":
+#         stack.append(i)
+#
+#     elif len(stack) > 0 and i in levels.values():
+#         stack_top = stack[-1]
+#
+#         if get_key(levels, stack_top) > get_key(levels, i):
+#             output.append(stack_top)
+#             stack.pop()
+#
+#         stack.append(i)
+#     else:
+#         stack.append(i)
+#     print("Input: " + i + " Stack: " + str(stack) + " Output: " + str(output))
+#
+# for i in stack:
+#     output.append(i)
+#
+# return output
