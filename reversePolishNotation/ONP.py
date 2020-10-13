@@ -12,7 +12,12 @@ def read_file(file_name):
 
 def write_file(file_output, output):
     file = open(file_output, "w")
-    file.write(str(output))
+    string_output = ""
+
+    for i in output:
+        string_output = string_output + i +  " "
+
+    file.write(string_output)
     file.close()
 
 
@@ -63,7 +68,8 @@ def onp(input):
     while stack:
         output.append(stack[-1])
         stack.pop()
-    print(" Output: " + str(output))
+
+    return output
 
 def main():
     levels = {
@@ -72,10 +78,7 @@ def main():
         3: ["^"]
     }
     input = read_file("input.txt")
-    # print(input)
-    # print(onp(input))
-    onp(input)
-    # print(get_key(levels, "+"))
+    write_file("output.txt", onp(input))
 
 
 main()
