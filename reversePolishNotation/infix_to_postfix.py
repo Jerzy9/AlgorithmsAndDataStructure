@@ -28,7 +28,7 @@ def get_key(dictionary, value):
                 return key
 
 
-def onp(input):
+def infix_to_postfix(input):
     stack, output = [], []
     levels = {
         0: ["("],
@@ -77,8 +77,8 @@ def main():
         2: ["*", "/"],
         3: ["^"]
     }
-    input = read_file("input.txt")
-    write_file("output.txt", onp(input))
+    input = read_file("infix_to_postfix_input.txt")
+    write_file("infix_to_postfix_output.txt", infix_to_postfix(input))
 
 
 main()

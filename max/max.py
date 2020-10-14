@@ -23,17 +23,17 @@ def max_num(numbers_tab):
 
 
 def write_output(output, file_name):
-    file = open("output.txt", "w")
+    file = open("postfix_to_infix_output.txt", "w")
     file.write(str(output))
     file.close()
 
 
 def main():
-    input_numbers = read_input("input.txt", ";")
+    input_numbers = read_input("postfix_to_infix_input.txt", ";")
 
     max_number = max_num(input_numbers)
 
-    write_output(max_number, "output.txt")
+    write_output(max_number, "postfix_to_infix_output.txt")
 
     print("output: ", max_number)
 
