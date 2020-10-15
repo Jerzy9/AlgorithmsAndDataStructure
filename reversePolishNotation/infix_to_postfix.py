@@ -3,10 +3,6 @@ def read_file(file_name):
     input = file.readline()
     input = list(input)
 
-    # for i in range(0, len(input)):
-    #     if not input[i].isnumeric():
-    #         continue
-    #     input[i] = input[i]
     return input
 
 
@@ -45,8 +41,8 @@ def infix_to_postfix(input):
 
         elif i in ["+", "-", "*", "/", "^"]:
             while stack and get_key(levels, stack[-1]) > get_key(levels, i):
-                output.append(stack[-1])
-                stack.pop()
+                output.append(stack.pop())
+
             stack.append(i)
 
         elif i == "(":
@@ -54,22 +50,17 @@ def infix_to_postfix(input):
 
         elif i == ")":
             for j in stack:
-
                 if stack[-1] != "(":
-                    output.append(stack[-1])
-                    stack.pop()
+                    output.append(stack.pop())
 
-
-                print(stack.pop())
+                stack.pop()
                 break
 
-        print("Input: " + i + " Stack: " + str(stack) + " Output: " + str(output))
-
+        # print("Input: " + i + " Stack: " + str(stack) + " Output: " + str(output))
     while stack:
-        output.append(stack[-1])
-        stack.pop()
-
+        output.append(stack.pop())
     return output
+
 
 def main():
     levels = {
@@ -82,47 +73,3 @@ def main():
 
 
 main()
-
-# output = []
-# stack = []
-# levels = {
-#     0: ["("],
-#     1: ["+", "-"],
-#     2: ["*", "/"],
-#     3: ["^"]
-# }
-
-# for i in input:
-#     if i.isnumeric():
-#         output.append(i)
-#         continue
-#
-#     elif i == ")":
-#         for j in stack:
-#
-#             if j != "(":
-#                 output.append(stack.pop(-1))
-#                 continue
-#
-#             break
-#         continue
-#
-#     elif i == "(":
-#         stack.append(i)
-#
-#     elif len(stack) > 0 and i in levels.values():
-#         stack_top = stack[-1]
-#
-#         if get_key(levels, stack_top) > get_key(levels, i):
-#             output.append(stack_top)
-#             stack.pop()
-#
-#         stack.append(i)
-#     else:
-#         stack.append(i)
-#     print("Input: " + i + " Stack: " + str(stack) + " Output: " + str(output))
-#
-# for i in stack:
-#     output.append(i)
-#
-# return output

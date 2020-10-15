@@ -26,15 +26,15 @@ def postfix_to_infix(input):
             stack += ""
             stack[-1] = "(" + output + ")"
 
-        print("el: ", i, " stack: ", stack, " output: ", output)
+        # print("el: ", i, " stack: ", stack, " output: ", output)
     return output
 
 
 def main():
     input = read_file("postfix_to_infix_input.txt")
     output = postfix_to_infix(input)
-    print(output)
     write_file("postfix_to_infix_output.txt", output)
+
 
 main()
 
