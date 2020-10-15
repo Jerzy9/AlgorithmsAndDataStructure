@@ -15,7 +15,7 @@ def write_file(file_output, output):
     string_output = ""
 
     for i in output:
-        string_output = string_output + i +  " "
+        string_output = string_output + i + " "
 
     file.write(string_output)
     file.close()
