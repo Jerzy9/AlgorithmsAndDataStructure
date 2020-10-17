@@ -21,9 +21,7 @@ def postfix_to_infix(input):
             stack.append(i)
             continue
         else:
-            output = stack[-2] + i + stack[-1]
-            stack.pop()
-            stack += ""
+            output = stack[-2] + i + stack.pop()
             stack[-1] = "(" + output + ")"
 
         # print("el: ", i, " stack: ", stack, " output: ", output)
