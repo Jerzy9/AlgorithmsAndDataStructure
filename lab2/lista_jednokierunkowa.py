@@ -1,17 +1,17 @@
 class Lista_j:
 
     def __init__(self, size):
-        self.Lista_j = []
         self.size = 0
         self.max_size = size
         self.head = None
-        self.next_el = None
 
     def push(self, index, new_el):
         this_el = self.head
         next_el = None
 
-        if self.size < self.max_size:
+        self.size += 1
+
+        if self.size <= self.max_size:
             if index == 0:
                 if self.head is not None:
                     next_el = self.head.next
@@ -42,6 +42,7 @@ class Lista_j:
 
         if index == 0 and self.head is not None:
             self.head = self.head.next
+            self.size -= 1
             return 1
 
         for i in range(0, index - 1):
@@ -49,6 +50,7 @@ class Lista_j:
 
         if this_el.next is not None:
             this_el.next = this_el.next.next
+            self.size -= 1
             return 1
 
     def get_el(self, index):
