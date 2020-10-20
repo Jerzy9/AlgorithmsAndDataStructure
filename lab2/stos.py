@@ -1,6 +1,6 @@
 class Stack:
     def __init__(self, size):
-        self.Stack = []
+        self.Stack = []*size
         self.size = 0
         self.max_size = size
         self.top_index = -1
@@ -43,11 +43,6 @@ def main():
     stack = Stack(10)
     stack.push(5)
     print(stack.top())
-    stack.push(4)
-    stack.push(3)
-    stack.push(2)
-    stack.push(3)
-    stack.push(2)
     stack.push(4)
     stack.push(3)
     stack.push(2)
