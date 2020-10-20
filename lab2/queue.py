@@ -15,7 +15,7 @@ class Queue:
         if self.head == self.tail:
             self.tail -= 1
             print("Kolejka jest pełna")
-            return 0
+            pass
 
         self.Queue[self.tail] = obj
 
