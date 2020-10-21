@@ -31,11 +31,15 @@ class Lista_j:
         return 0
 
     def get_list(self):
+        res = [0] * self.max_size
+        index = 0
         next_el = self.head
 
         while next_el is not None:
-            print(next_el.el)
+            res[index] = next_el.el
             next_el = next_el.next
+            index += 1
+        return res
 
     def remove(self, index):
         this_el = self.head
@@ -87,8 +91,8 @@ lista.push(0, Element(90))
 
 lista.remove(5)
 
-lista.get_list()
+print(lista.get_list())
 
-print(lista.get_el(4).el)
+# print(lista.get_el(4).el)
 
 
