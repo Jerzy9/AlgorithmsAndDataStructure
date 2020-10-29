@@ -36,37 +36,6 @@ class Lista_d:
 
         print("Lista jest pełna")
         return 0
-        #
-        # else:
-        #     this_el = self.tail
-        #     prev_el = None
-        #
-        #     if self.size < self.max_size:
-        #         if index == self.size-1:
-        #             if self.tail is not None:
-        #                 prev_el = self.head.prev
-        #             self.head = new_el
-        #             self.head.prev = prev_el
-        #             return 1
-        #
-        #         for i in range(self.size-1, index+1):
-        #             this_el = this_el.prev
-        #
-        #         print(this_el, prev_el)
-        #
-        #         new_el.prev = prev_el
-        #         new_el.next = this_el
-        #         this_el.prev = new_el
-        #
-        #         print(new_el.el, "  ", new_el.prev.el)
-        #
-        #         if prev_el is None:
-        #             self.tail = new_el
-        #
-        #         return 1
-        #
-        #     print("Lista jest pełna")
-        #     return 0
 
     def get_list(self):
         res = [0]*self.max_size
@@ -137,6 +106,18 @@ class Lista_d:
                 self.size -= 1
                 return 1
 
+    def search(self, value):
+        this_el = self.head
+        index = 0
+
+        while this_el.el != value:
+            this_el = this_el.next
+            index += 1
+            if this_el is None:
+                print("Nie ma szukanego elementu na liście")
+                return -1
+        return index
+
 
 class Element:
 
@@ -159,4 +140,5 @@ print(lista.get_list())
 lista.remove(2)
 print("")
 print(lista.get_list())
+print(lista.search(5))
 

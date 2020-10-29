@@ -69,6 +69,31 @@ class Lista_j:
 
         return this_el
 
+    def search(self, value):
+        this_el = self.head
+        index = 0
+
+        while True:
+            if this_el.el == value:
+                return index
+            if this_el.next == self.head:
+                print("Nie ma elementu na liście")
+                break
+            this_el = this_el.next
+            index += 1
+
+    def search(self, value):
+        this_el = self.head
+        index = 0
+
+        while this_el.el != value:
+            this_el = this_el.next
+            index += 1
+            if this_el is None:
+                print("Nie ma szukanego elementu na liście")
+                return -1
+        return index
+
 
 class Element:
 
@@ -92,6 +117,7 @@ lista.push(0, Element(90))
 lista.remove(5)
 
 print(lista.get_list())
+print(lista.search(4))
 
 # print(lista.get_el(4).el)
 

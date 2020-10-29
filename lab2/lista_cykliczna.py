@@ -79,6 +79,19 @@ class Lista_c:
 
         return this_el
 
+    def search(self, value):
+        this_el = self.head
+        index = 0
+
+        while True:
+            if this_el.el == value:
+                return index
+            if this_el.next == self.head:
+                print("Nie ma elementu na liście")
+                break
+            this_el = this_el.next
+            index += 1
+
 
 class Element:
 
@@ -94,11 +107,13 @@ lista.push(1, Element(3))
 lista.push(2, Element(4))
 lista.push(3, Element(5))
 print(lista.get_list())
-lista.remove(0)
-print("\n" ,lista.get_list())
+# lista.remove(0)
+# print("\n" ,lista.get_list())
+#
+# lista.remove(0)
+# print("\n" ,lista.get_list())
 
-lista.remove(0)
-print("\n" ,lista.get_list())
+print(lista.search(5))
 
 # print(lista.get_el(2).next)
 

@@ -2,21 +2,22 @@ class Lista_c:
 
     def __init__(self, size):
         self.head = Element(0)
-        self.size = 0
+        self.size = 1
         self.max_size = size
 
     def push(self, index, new_el):
-        this_el = self.head
+        this_el = self.head.next
         next_el = None
 
         if self.size < self.max_size:
             self.size += 1
 
             if index == 0:
-                if self.head is not None:
-                    next_el = self.head.next.next
-                self.head = new_el
-                self.head.next = next_el
+
+                if self.head.next is not None:
+                    next_el = self.head.next.next.next
+                self.head.next = new_el
+                self.head.next.next = next_el
                 return 1
 
             for i in range(0, index - 1):
@@ -34,15 +35,15 @@ class Lista_c:
         return 0
 
     def remove(self, index):
-        this_el = self.head
+        this_el = self.head.next
 
-        if index == 0 and self.head is not None:
-            self.head = this_el.next
+        if index == 0 and self.head.next is not None:
+            self.head.next = this_el.next
             self.size -= 1
 
             for i in range(0, self.size - 1):
                 this_el = this_el.next
-            this_el.next = self.head
+            this_el.next = self.head.next
 
             return 1
         else:
@@ -68,7 +69,7 @@ class Lista_c:
         return res
 
     def get_el(self, index):
-        this_el = self.head
+        this_el = self.head.next
 
         for i in range(0, index):
             this_el = this_el.next
@@ -78,6 +79,19 @@ class Lista_c:
                 break
 
         return this_el
+
+    def search(self, value):
+        self.head.el = value
+        this_el = self.head.next
+        index = 0
+
+        while value != this_el.el:
+            this_el = this_el.next
+            index += 1
+
+        if this_el != self.head:
+            return index
+        print("Nie ma elementu na liście")
 
 
 class Element:
@@ -94,9 +108,11 @@ lista.push(1, Element(3))
 lista.push(2, Element(4))
 lista.push(3, Element(5))
 print(lista.get_list())
-lista.remove(0)
-print("\n" ,lista.get_list())
-
-lista.remove(0)
-print("\n" ,lista.get_list())
+# lista.remove(0)
+# print(lista.get_list())
+#
+# lista.remove(0)
+# print(lista.get_list())
+print(lista.get_el(1).el)
+print(lista.search(2))
 
