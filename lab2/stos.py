@@ -16,7 +16,6 @@ class Stack:
 
         if self.top_index < 0:
             print("Pusty stps")
-            self.top_index = 0
             return 0
 
         self.Stack[self.top_index] = 0
