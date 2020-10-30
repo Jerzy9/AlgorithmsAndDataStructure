@@ -7,7 +7,7 @@ class Queue:
         self.size = size
         self.max_size = size
 
-    def euqueue(self, obj):
+    def enqueue(self, obj):
         self.tail += 1
 
         if self.tail > self.size - 1:
@@ -18,7 +18,6 @@ class Queue:
             print("Kolejka jest pełna")
             return 0
 
-        print("przypisz", obj, " na index: ", self.tail)
         self.Queue[self.tail] = obj
 
     def dequeue(self):
@@ -36,21 +35,33 @@ class Queue:
         return head
 
 
+def read_input(file_name):
+    file = open(file_name, "r")
+    numbers = file.readline()
+    numbers = numbers.split(";")
+    que = Queue(len(numbers))
+
+    for i in range(0, len(numbers)):
+        try:
+            que.enqueue(float(numbers[i]))
+        except:
+            print("Błędny znak")
+
+    print(que.Queue)
+
+    return que
+
 def main():
-    q = Queue(5)
-    print(q.dequeue())
-    print(q.Queue)
-    print(q.dequeue())
-    print(q.Queue)
+    q = read_input("input.txt")
 
-    q.euqueue(7)
-    q.euqueue(8)
-    q.euqueue(8)
-    q.euqueue(8)
+    q.dequeue()
+    q.dequeue()
+    q.dequeue()
+    q.enqueue(8)
+    q.enqueue(9)
+    q.dequeue()
     print(q.Queue)
-
 
 main()
-
 
 

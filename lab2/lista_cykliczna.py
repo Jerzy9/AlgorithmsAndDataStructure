@@ -1,4 +1,4 @@
-class Lista_c:
+class ListaC:
 
     def __init__(self, size):
         self.head = None
@@ -99,23 +99,34 @@ class Element:
         self.el = el
         self.next = None
 
-lista = Lista_c(5)
 
-lista.push(0, Element(1))
-lista.push(1, Element(2))
-lista.push(1, Element(3))
-lista.push(2, Element(4))
-lista.push(3, Element(5))
-print(lista.get_list())
-# lista.remove(0)
-# print("\n" ,lista.get_list())
-#
-# lista.remove(0)
-# print("\n" ,lista.get_list())
+def read_input(file_name):
+    file = open(file_name, "r")
+    numbers = file.readline()
+    numbers = numbers.split(";")
+    l = ListaC(len(numbers))
 
-print(lista.search(5))
+    for i in range(0, len(numbers)):
+        try:
+            l.push(i, Element(int(numbers[i])))
+        except:
+            print("Błędny znak")
 
-# print(lista.get_el(2).next)
+    print(l.get_list())
+
+    return l
+
+def main():
+    lista = read_input("input.txt")
+
+    lista.remove(2)
+
+    print(lista.get_list())
+    print(lista.search(5))
+
+
+main()
+
 
 
 

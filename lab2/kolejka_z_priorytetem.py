@@ -60,10 +60,25 @@ class QueueP:
         return head
 
 
+def read_input(file_name):
+    file = open(file_name, "r")
+    numbers = file.readline()
+    numbers = numbers.split(";")
+    que = QueueP(len(numbers))
+
+    for i in range(0, len(numbers)):
+        try:
+            que.enqueue(float(numbers[i]))
+        except:
+            print("Błędny znak")
+
+    print(que.Queue)
+
+    return que
+
 def main():
-    q = QueueP(5)
-    q.enqueue(1); q.enqueue(2);q.enqueue(3); q.enqueue(1); q.enqueue(2);q.enqueue(3);
-    print(q.Queue)
+    q = read_input("input.txt")
+
     q.dequeue()
     q.dequeue()
     q.dequeue()

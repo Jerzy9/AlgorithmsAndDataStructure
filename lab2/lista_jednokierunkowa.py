@@ -1,4 +1,4 @@
-class Lista_j:
+class ListaJ:
 
     def __init__(self, size):
         self.size = 0
@@ -102,23 +102,32 @@ class Element:
         self.el = el
         self.next = None
 
+def read_input(file_name):
+    file = open(file_name, "r")
+    numbers = file.readline()
+    numbers = numbers.split(";")
+    l = ListaJ(len(numbers))
 
-lista = Lista_j(10)
+    for i in range(0, len(numbers)):
+        try:
+            l.push(i, Element(int(numbers[i])))
+        except:
+            print("Błędny znak")
 
-lista.push(0, Element(2))
-lista.push(1, Element(3))
-lista.push(2, Element(4))
-lista.push(3, Element(5))
-lista.push(4, Element(6))
-lista.push(5, Element(7))
+    print(l.get_list())
 
-lista.push(0, Element(90))
+    return l
 
-lista.remove(5)
+def main():
+    lista = read_input("input.txt")
 
-print(lista.get_list())
-print(lista.search(4))
+    lista.remove(2)
 
-# print(lista.get_el(4).el)
+    print(lista.get_list())
+    print(lista.search(5))
+
+
+main()
+
 
 

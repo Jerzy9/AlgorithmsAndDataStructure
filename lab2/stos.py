@@ -1,6 +1,6 @@
 class Stack:
     def __init__(self, size):
-        self.Stack = []*size
+        self.Stack = [] * size
         self.size = 0
         self.max_size = size
         self.top_index = -1
@@ -18,10 +18,9 @@ class Stack:
             print("Pusty stps")
             self.top_index = 0
             return 0
-        print(self.Stack)
+
         self.Stack[self.top_index] = 0
         self.top_index -= 1
-        print(self.Stack)
 
         return top
 
@@ -39,24 +38,25 @@ class Stack:
         return 1
 
 
+def read_input(file_name):
+    file = open(file_name, "r")
+    numbers = file.readline()
+    numbers = numbers.split(";")
+    stack = Stack(len(numbers))
+
+    for i in range(0, len(numbers)):
+        try:
+            stack.push(float(numbers[i]))
+        except:
+            numbers.pop(i)
+
+    print(stack.Stack)
+
+    return stack
+
+
 def main():
-    stack = Stack(10)
-    stack.push(5)
-    print(stack.top())
-    stack.push(4)
-    stack.push(3)
-    stack.push(2)
-    print(stack.top())
-    print(stack.pop())
-    print(stack.top())
-    print(stack.pop())
-    print(stack.pop())
-    print(stack.pop())
-    print(stack.pop())
-
-
-
-    # stack.push(stack)
+    stack = read_input("input.txt")
 
 
 main()
