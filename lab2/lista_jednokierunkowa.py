@@ -102,6 +102,7 @@ class Element:
         self.el = el
         self.next = None
 
+
 def read_input(file_name):
     file = open(file_name, "r")
     numbers = file.readline()
@@ -117,6 +118,7 @@ def read_input(file_name):
     print(l.get_list())
 
     return l
+
 
 def main():
     lista = read_input("input.txt")
