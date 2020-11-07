@@ -1,46 +1,44 @@
-import queue
+import math
 
 def prima():
     v = [1, 2, 3, 4, 5]
-    pred = [0, 0, 0, 0, 0]
-    k = [0, 100, 100, 100, 100]
-
     graf = [[0, 3, 0, 3, 5],
             [3, 0, 5, 1, 0],
             [0, 5, 0, 2, 0],
             [3, 1, 2, 0, 1],
             [5, 0, 0, 1, 0]]
+    l = len(graf)
 
-    pq = [1,2,4,3,5]
+    pred = [0] * l
+    k = [math.inf] * l
+    k[0] = 0
 
-
-
-    current_v = pq[0]
-
+    pq = [1, 2, 3, 4, 5]
     while len(pq) != 0:
 
-        if v[k.index(min(k))] in pq:
-            current_v = v[k.index(min(k))]
+        min_el = math.inf
+        for z in range(l):
+            if k[z] < min_el and v[z] in pq:
+                min_el = k[z]
 
-        print(current_v)
-        print(pq)
-        pq.remove(current_v)
+        if v[k.index(min_el)] in pq:
+            u = v[k.index(min_el)]
+        else:
+            break
 
-
-        for i in range(0, len(v)):
-            # print(i)
-            el = graf[current_v-1][i]
+        for i in range(l):
+            el = graf[u-1][i]
 
             if k[i] > el > 0 and i+1 in pq:
                 k[i] = el
-                pred[i] = current_v
+                pred[i] = u
 
-#                 Brakuje tutej
-#         pq.remove(current_v)
+        pq.remove(u)
+
+    print("Tablica k: ")
+    print(k)
+    print("Tablica pred: ")
+    print(pred)
+
 
 prima()
-
-
-
-
-
