@@ -29,7 +29,6 @@ def dijkstra():
         for i in range(l):
             el = graf[u-1][i] + dist[u-1]
 
-
             if dist[i] > el > 0:
                 dist[i] = el
                 pred[i] = u
