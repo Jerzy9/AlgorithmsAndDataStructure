@@ -1,50 +1,85 @@
 import math
+import mmap
+graf = [[0, 1, 0, 0, 0, 10],
+        [0, 0, 2, 1, 0, 0],
+        [0, 0, 0, 0, 5, 0],
+        [0, 0, 0, 0, 3, 4],
+        [0, 0, 0, 0, 0, 2],
+        [0, 0, 0, 0, 0, 0]]
+l = len(graf)
+
+v = [1, 2, 3, 4, 5, 6]
+pred = [0] * l
+h = [5, 3, 4, 2, 6, 0]
+g = [math.inf] * l
+f = [math.inf] * l
+
+
+
+pq = [1, 2, 3, 4, 5, 6]
+
+
+def reconstruct_path(cameFrom, current):
+    pass
 
 
 def astar():
-    v = [1, 2, 3, 4, 5, 6]
-    graf = [[0, 1, 0, 0, 0, 10],
-            [0, 0, 2, 1, 0, 0],
-            [0, 0, 0, 0, 5, 0],
-            [0, 0, 0, 0, 3, 4],
-            [0, 0, 0, 0, 0, 2],
-            [0, 0, 0, 0, 0, 0]]
-    l = len(graf)
 
-    pred = [0] * l
+    cameFrom = v.copy()
 
-    h = [5, 3, 4, 2, 6, 0]
-    g = [math.inf] * l
-    f = [math.inf] * l
+    g[0] = 0
+    f[0] = h[0]
+    goal = v[l-1]
 
-    pq = [1, 2, 4, 6, 3, 5]
     while len(pq) != 0:
+        minF = math.inf
+        for i in f:
+            if minF >= i:
+                minF = i
 
-        u = pq.pop(0)
+        print("minF: ", minF)
+        indexMinF = f.index(minF)
 
-        min_num = math.inf
-        for i in range(l):
+        print("pq:  ", pq)
+        print(f.index(minF))
+        # find proper index
+        current = -1
+        for f_el in f:
+            indexMinF = f.index(minF)
+            if  indexMinF+1 in pq:
+                current = indexMinF + 1
+        if current == -1:
+            break
 
-            if min_num > graf[u-1][i] > 0:
-                min_num = graf[u-1][i]
-                min_index = i
-        print(min_num , " ssssssssssssssssssss")
-        g[u-1] = g[u-1] + min_num
-        print("g:  ", g)
-        for i in range(l):
-            dist = h[u-1] + g[i]
 
-            if dist > f[i] and graf[u-1][i] > 0:
-                f[i] = dist
-                pred[i] = u
-        print(u)
-        # pq.remove(u)
+        # if indexMinF+1 in pq:
+        #     current = indexMinF+1
+        # else:
+        #     print("NIE MA CURRENT:   ", current)
+        #     break
 
-    print("v:  ", v)
-    print("pred  ", pred)
-    print("h:  ", h)
-    print("g:  ", g)
-    print("f:  ", f)
+        if current == goal:
+            return reconstruct_path(cameFrom, current)
+
+        # remove current
+        print(current, "sss")
+        pq.remove(current)
+
+        print(g)
+        print(f)
+        for n in range(l):
+
+            if graf[current-1][n] > 0:
+                gScore = g[current-1] + graf[current-1][n]
+
+                if gScore < g[n]:
+
+                    cameFrom = current
+                    g[n] = gScore
+                    f[n] = g[n] + h[n]
+
+                    if n not in pq:
+                        pq.append(n)
 
 
 astar()
