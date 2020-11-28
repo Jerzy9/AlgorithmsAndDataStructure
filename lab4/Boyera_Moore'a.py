@@ -1,65 +1,46 @@
 def booyer(input, pattern):
-    # i = len(input)
-    #
-    # tab = [0]*len(pattern), [0]*len(pattern)
-    # index = 0
-    #
-    # for k in range(0, len(pattern)):
-    #     # print(tab)
-    #     if pattern[k] in tab[0]:
-    #         # print(tab[0].index(pattern[k]))
-    #         tab[1][tab[0].index(pattern[k])] = k
-    #     else:
-    #         tab[0][index] = pattern[k]
-    #         tab[1][index] = k
-    #         index += 1
-    #
-    # print(tab)
+    tab = [0]*len(pattern), [0]*len(pattern)
+    index = 0
 
-    # while i < len(input):
-    #     j = len(pattern) -1
-    #
-    #     if i == 0:
-    #         i = j
-    #
-    #     pattern[j]
-    #
-    #     if input[i] == pattern[j]:
-    #         print("Znaleziono wzorzec")
+    for k in range(0, len(pattern)):
+
+        if pattern[k] in tab[0]:
+            tab[1][tab[0].index(pattern[k])] = k
+        else:
+            tab[0][index] = pattern[k]
+            tab[1][index] = k
+            index += 1
+
+    print(tab)
 
     n = len(input)
     m = len(pattern)
     i = m - 1
 
-    while i <= n-1:
-        print(2)
+    while i < n:
         j = m - 1
 
-        while j >= m - 1:
-            print("i:", i, "j:", j, "  ", "T[i]:", input[i], "P[j]:", pattern[j])
+        while j < m:
             if pattern[j] == input[i]:
-                if j == 0:
-                    print(pattern)
+                print("found patter:", pattern)
+                print("i:", i, "j:", j, "  ", "T[i]:", input[i], "P[j]:", pattern[j])
+                if i + m < n:
+                    i += m
                 else:
-                    j -= 1
-                    i -= 1
+                    i = n
+                break
+
+            elif input[i] in pattern:
+                id = tab[0].index(input[i])
+                j = tab[1][id]
+
             else:
-                print(last(input[i], pattern))
-                print(input[i])
-
-                j += m - min(j, 1 + last(input[i], pattern))
-                j = m - 1
-
-
-def last(czarek, pattern):
-    index = 999999
-    for i in range(0, len(pattern)):
-        if i == czarek:
-            index = i
-    return index
+                if i + m < n:
+                    i += m
+                else:
+                    i = n
+                break
 
 
+booyer("ACBADBABCABD", "ABCAB")
 
-# booyer("ABACADEFGABABGBMIABORIGAMI", "ORIGAMI")
-
-last()
