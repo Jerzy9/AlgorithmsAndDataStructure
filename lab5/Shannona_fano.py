@@ -1,11 +1,8 @@
-alpha = {'a': 0.1, 'b': 0.2, 'c': 0.4, 'd': 0.1, 'e': 0.2}
-alpha2 = ['c', 'b', 'e', 'a', 'd'], [0.4, 0.2, 0.2, 0.1, 0.1]
+alpha = ['c', 'b', 'e', 'a', 'd'], [0.4, 0.2, 0.2, 0.1, 0.1]
 result = [], []
 
 
 def shan(a, value):
-    # print(a)
-
     length = len(a[1])
 
     if length == 1:
@@ -26,9 +23,5 @@ def shan(a, value):
         shan(tab1, str(value + '1'))
 
 
-shan(alpha2, "")
+shan(alpha, "")
 print(result)
-test = [1,2,3,4,5]
-l = len(test)
-h = int(l/2)
-# print(test[:h])
