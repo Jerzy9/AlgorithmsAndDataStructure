@@ -9,7 +9,6 @@ def partition(low, high):
     pivot = tab[high]
 
     i = low -1
-    index = 0
 
     for j in range(low, high):
 
@@ -19,8 +18,6 @@ def partition(low, high):
             temp = tab[j]
             tab[j] = tab[i]
             tab[i] = temp
-
-            index = i
 
     temp = tab[i+1]
     tab[i+1] = tab[high]
